@@ -1,0 +1,17 @@
+{% extends "LigaFc/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">ACA ESTAN LOS ASISTIDORES!</h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+<form action="{% url 'Asistidores' %}" method="POST"> {% csrf_token %}
+
+    <table>
+        {{ formulario.as_table }}
+    </table>
+    <input type="submit" value="Enviar">
+</form>
+{% endblock %}
