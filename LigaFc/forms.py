@@ -26,10 +26,10 @@ class RojasForms(forms.Form):
     
 
 
-class AmarillasForms(forms.Form):
+class amarillasForms(forms.Form):
     nombre=forms.CharField(max_length=50)
     apellido=forms.CharField(max_length=50)
     club=forms.CharField(max_length=50)
-    amarilllas=forms.IntegerField()
+    amarillas=forms.IntegerField()
 
     

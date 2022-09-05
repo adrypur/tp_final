@@ -1,14 +1,15 @@
 {% extends "LigaFc/padre.html" %}
 
+% load static %
 
-{% load static %}
+
 
 {% block titulo %}
-<h1 class="mb-5">ACA ESTAS LOS AMONESTADOS!</h1>
+<h1 class="mb-5">ACA ESTAN LOS AMONESTADOS</h1>
 {% endblock %}
 
 {% block contenido_que_cambia %}
-<form action="{% url 'Amarillas' %}" method="POST"> {% csrf_token %}
+<form action="{% url 'amarillas' %}" method="POST"> {% csrf_token %}
 
     <table>
         {{ formulario.as_table }}

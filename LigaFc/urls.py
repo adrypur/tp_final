@@ -4,7 +4,7 @@ from LigaFc.views import *
 
 urlpatterns = [
     path("", inicio, name="inicio"),
-    path("Amarillas/", Amarillas, name="Amarillas"),
+    path("amarillas/", amarillas, name="amarillas"),
     path("Asistidores/", Asistidores, name="Asistidores"),
     path("Rojas/", Rojas, name="Rojas"),
     path("Goleadores/", Goleadores, name="Goleadores"),

@@ -1,17 +1,17 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Goleadores, Asistidores, Rojas, Amarillas
+from .models import Goleadores, Asistidores, Rojas, amarillas
 from django.http import HttpResponse
-from LigaFc.forms import GoleadoresForms, AsistidoresForms, RojasForms, AmarillasForms 
+from LigaFc.forms import GoleadoresForms, AsistidoresForms, RojasForms, amarillasForms 
 # Create your views here.
 
 
 def inicio(request):
     return render (request, "LigaFc/inicio.html")
 
-"""def Amarillas(request):
-    return render (request, "LigaFc/Amarillas.html")"""
+"""def amarillas(request):
+    return render (request, "LigaFc/amarillas.html")"""
 
 def Asistidores(request):
     return render (request, "LigaFc/Asistidores.html")
@@ -26,7 +26,7 @@ def Rojas(request):
 
 def Goleadores(request):
     if request.method=="POST":
-        form=GoleadoresForm(request.POST)
+        form=GoleadoresForms(request.POST)
        
         if form.is_valid():
             informacion=form.cleaned_data
@@ -35,7 +35,7 @@ def Goleadores(request):
             apellido=informacion["apellido"]
             club=informacion["club"]
             goles=informacion["goles"]
-            goleador=goleadores(nombre=nombre, apellido=apellido, club=club, goles=goles)
+            goleador=Goleadores(nombre=nombre, apellido=apellido, club=club, goles=goles)
             goleador.save()
             return render (request, "LigaFc/inicio.html")
 
@@ -43,9 +43,9 @@ def Goleadores(request):
         formulario=GoleadoresForms()
         return render (request, "LigaFc/Goleadores.html", {"formulario":formulario})
 
-def Amarillas(request):
+def amarillas(request):
     if request.method=="POST":
-        form=AmarillasForms(request.POST)
+        form=amarillasForms(request.POST)
        
         if form.is_valid():
             informacion=form.cleaned_data
@@ -54,19 +54,19 @@ def Amarillas(request):
             apellido=informacion["apellido"]
             club=informacion["club"]
             amarillas=informacion["amarillas"]
-            amarilla=amarillas(nombre=nombre, apellido=apellido, club=club, amarillas=amarillas)
-            amarilla.save()
+            amarillas_validas=amarillas(nombre=nombre, apellido=apellido, club=club, amarillas=amarillas)
+            amarillas_validas.save()
             return render (request, "LigaFc/inicio.html")
 
     else:
-        formulario=AmarillasForms()
-        return render (request, "LigaFc/Amarillas.html", {"formulario":formulario})
+        formulario=amarillasForms()
+        return render (request, "LigaFc/amarillas.html", {"formulario":formulario})
 
 
 def Asistidores(request):
 
     if request.method=="POST":
-        form=AsistidoresForm(request.POST)
+        form=AsistidoresForms(request.POST)
        
         if form.is_valid():
             informacion=form.cleaned_data
@@ -115,7 +115,7 @@ def buscar(request):
 
         nombres=request.GET["club"]
         #traeme de la base, TODOS los jugadores del club
-        clubes=Club.objects.filter(club=club)
+        clubes=club.objects.filter(club=club)
         return render(request, "LigaFc/resultadosBusqueda.html", {"club":"club"})
     else:
         return render(request, "LigaFc/busquedaclub.html", {"mensaje":"Por favor ingresa un club!"})
