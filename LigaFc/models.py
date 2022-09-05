@@ -33,7 +33,7 @@ class Rojas(models.Model):
         return self.nombre+""+str(self.club)
 
 
-class amarillas(models.Model):
+class Amarillas(models.Model):
     nombre=models.CharField(max_length=50)
     apellido=models.CharField(max_length=50)
     club=models.CharField(max_length=50)

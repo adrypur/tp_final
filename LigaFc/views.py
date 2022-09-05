@@ -1,26 +1,26 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Goleadores, Asistidores, Rojas, amarillas
+from .models import Goleadores, Asistidores, Rojas, Amarillas
 from django.http import HttpResponse
 from LigaFc.forms import GoleadoresForms, AsistidoresForms, RojasForms, amarillasForms 
 # Create your views here.
 
 
-def inicio(request):
+def Inicio(request):
     return render (request, "LigaFc/inicio.html")
 
 """def amarillas(request):
     return render (request, "LigaFc/amarillas.html")"""
 
-def Asistidores(request):
-    return render (request, "LigaFc/Asistidores.html")
+"""def Asistidores(request):
+    return render (request, "LigaFc/Asistidores.html")"""
 
-def Goleadores(request):
+"""def Goleadores(request):
     return render (request, "LigaFc/Goleadores.html")
 
 def Rojas(request):
-    return render (request, "LigaFc/Rojas.html")
+    return render (request, "LigaFc/Rojas.html")"""
 
 
 
@@ -43,19 +43,20 @@ def Goleadores(request):
         formulario=GoleadoresForms()
         return render (request, "LigaFc/Goleadores.html", {"formulario":formulario})
 
-def amarillas(request):
+def Amarillas(request):
     if request.method=="POST":
         form=amarillasForms(request.POST)
        
         if form.is_valid():
             informacion=form.cleaned_data
             print(informacion)
-            nombre=informacion["nombre"]
-            apellido=informacion["apellido"]
-            club=informacion["club"]
-            amarillas=informacion["amarillas"]
-            amarillas_validas=amarillas(nombre=nombre, apellido=apellido, club=club, amarillas=amarillas)
-            amarillas_validas.save()
+            nombre=form.cleaned_data["nombre"]
+            apellido=form.cleaned_data["apellido"]
+            club=form.cleaned_data["club"]
+            amarillas=form.cleaned_data["amarillas"]
+            """amarillas_validas=amarillas(nombre=nombre, apellido=apellido, club=club, amarillas=amarillas)"""
+            form.save()
+            print (form)
             return render (request, "LigaFc/inicio.html")
 
     else:
@@ -105,12 +106,12 @@ def Rojas(request):
 
 
 
-def busquedaclub(request):
+def Busquedaclub(request):
     return render(request, "LigaFc/busquedaclub.html")
     
 
     
-def buscar(request):
+def Buscar(request):
     if request.GET["club"]:
 
         nombres=request.GET["club"]
