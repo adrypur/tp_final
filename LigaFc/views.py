@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Goleadores, Asistidores, Rojas, Amarillas
+from .models import Goleadores as GLS, Asistencias as ASIST, Rojas as RED, Amarillas as YELLOW
 from django.http import HttpResponse
-from LigaFc.forms import GoleadoresForms, AsistidoresForms, RojasForms, amarillasForms 
+from LigaFc.forms import AmarillasForms, AsistenciasForms, GoleadoresForms, AsistenciasForms, RojasForms
 # Create your views here.
 
 
@@ -35,7 +35,7 @@ def Goleadores(request):
             apellido=informacion["apellido"]
             club=informacion["club"]
             goles=informacion["goles"]
-            goleador=Goleadores(nombre=nombre, apellido=apellido, club=club, goles=goles)
+            goleador=GLS(nombre=nombre, apellido=apellido, club=club, goles=goles)
             goleador.save()
             return render (request, "LigaFc/inicio.html")
 
@@ -45,29 +45,27 @@ def Goleadores(request):
 
 def Amarillas(request):
     if request.method=="POST":
-        form=amarillasForms(request.POST)
+        form=AmarillasForms(request.POST)
        
         if form.is_valid():
             informacion=form.cleaned_data
             print(informacion)
-            nombre=form.cleaned_data["nombre"]
-            apellido=form.cleaned_data["apellido"]
-            club=form.cleaned_data["club"]
-            amarillas=form.cleaned_data["amarillas"]
-            """amarillas_validas=amarillas(nombre=nombre, apellido=apellido, club=club, amarillas=amarillas)"""
-            form.save()
-            print (form)
+            nombre=informacion["nombre"]
+            apellido=informacion["apellido"]
+            club=informacion["club"]
+            amarillas=informacion["amarillas"]
+            amonestado=YELLOW(nombre=nombre, apellido=apellido, club=club, amarillas=amarillas)
+            amonestado.save()
             return render (request, "LigaFc/inicio.html")
 
     else:
-        formulario=amarillasForms()
-        return render (request, "LigaFc/amarillas.html", {"formulario":formulario})
+        formulario=AmarillasForms()
+        return render (request, "LigaFc/Amarillas.html", {"formulario":formulario})
 
 
-def Asistidores(request):
-
+def Asistencias(request):
     if request.method=="POST":
-        form=AsistidoresForms(request.POST)
+        form=AsistenciasForms(request.POST)
        
         if form.is_valid():
             informacion=form.cleaned_data
@@ -76,12 +74,12 @@ def Asistidores(request):
             apellido=informacion["apellido"]
             club=informacion["club"]
             asistencias=informacion["asistencias"]
-            Asistencias=Asistidores(nombre=nombre, apellido=apellido, club=club, asistencias=asistencias)
-            Asistencias.save()
+            asistidor=ASIST(nombre=nombre, apellido=apellido, club=club, asistencias=asistencias)
+            asistidor.save()
             return render (request, "LigaFc/inicio.html")
 
     else:
-        formulario=AsistidoresForms()
+        formulario=AsistenciasForms()
         return render (request, "LigaFc/Asistencias.html", {"formulario":formulario})
 
 
@@ -96,7 +94,7 @@ def Rojas(request):
             apellido=informacion["apellido"]
             club=informacion["club"]
             rojas=informacion["rojas"]
-            Roja=roja(nombre=nombre, apellido=apellido, club=club, rojas=rojas)
+            Roja=RED(nombre=nombre, apellido=apellido, club=club, rojas=rojas)
             Roja.save()
             return render (request, "LigaFc/inicio.html")
 

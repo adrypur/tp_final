@@ -13,7 +13,7 @@ class Goleadores(models.Model):
         return self.nombre+""+str(self.club)
 
 
-class Asistidores(models.Model):
+class Asistencias(models.Model):
     nombre=models.CharField(max_length=50)
     apellido=models.CharField(max_length=50)
     club=models.CharField(max_length=50)

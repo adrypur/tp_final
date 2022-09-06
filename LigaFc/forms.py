@@ -9,7 +9,7 @@ class GoleadoresForms(forms.Form):
     
 
 
-class AsistidoresForms(forms.Form):
+class AsistenciasForms(forms.Form):
     nombre=forms.CharField(max_length=50)
     apellido=forms.CharField(max_length=50)
     club=forms.CharField(max_length=50)
@@ -26,7 +26,7 @@ class RojasForms(forms.Form):
     
 
 
-class amarillasForms(forms.Form):
+class AmarillasForms(forms.Form):
     nombre=forms.CharField(max_length=50)
     apellido=forms.CharField(max_length=50)
     club=forms.CharField(max_length=50)
