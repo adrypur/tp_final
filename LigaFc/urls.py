@@ -9,7 +9,7 @@ urlpatterns = [
     path("Rojas/", Rojas, name="Rojas"),
     path("Goleadores/", Goleadores, name="Goleadores"),
     path("buscar/", Buscar, name="buscar"),
-    path("busquedaclub/", Busquedaclub, name="busquedaclub"),
+    path("BusquedaGoleadores/", BusquedaGoleadores , name="BUSQUEDA GOLEADORES"),
     
 
     

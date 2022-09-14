@@ -31,12 +31,13 @@ def Goleadores(request):
         if form.is_valid():
             informacion=form.cleaned_data
             print(informacion)
-            nombre=informacion["nombre"]
-            apellido=informacion["apellido"]
-            club=informacion["club"]
-            goles=informacion["goles"]
-            goleador=GLS(nombre=nombre, apellido=apellido, club=club, goles=goles)
-            goleador.save()
+            nombre=form.cleaned_data["nombre"]
+            apellido=form.cleaned_data["apellido"]
+            club=form.cleaned_data["club"]
+            goles=form.cleaned_data["goles"]
+            #goleador=GLS(nombre=nombre, apellido=apellido, club=club, goles=goles)
+            form.save()
+            print(form)
             return render (request, "LigaFc/inicio.html")
 
     else:
@@ -50,12 +51,13 @@ def Amarillas(request):
         if form.is_valid():
             informacion=form.cleaned_data
             print(informacion)
-            nombre=informacion["nombre"]
-            apellido=informacion["apellido"]
-            club=informacion["club"]
-            amarillas=informacion["amarillas"]
-            amonestado=YELLOW(nombre=nombre, apellido=apellido, club=club, amarillas=amarillas)
-            amonestado.save()
+            nombre=form.cleaned_data["nombre"]
+            apellido=form.cleaned_data["apellido"]
+            club=form.cleaned_data["club"]
+            amarillas=form.cleaned_data["amarillas"]
+            #amonestado=YELLOW(nombre=nombre, apellido=apellido, club=club, amarillas=amarillas)
+            form.save()
+            print(form)
             return render (request, "LigaFc/inicio.html")
 
     else:
@@ -70,12 +72,13 @@ def Asistencias(request):
         if form.is_valid():
             informacion=form.cleaned_data
             print(informacion)
-            nombre=informacion["nombre"]
-            apellido=informacion["apellido"]
-            club=informacion["club"]
-            asistencias=informacion["asistencias"]
-            asistidor=ASIST(nombre=nombre, apellido=apellido, club=club, asistencias=asistencias)
-            asistidor.save()
+            nombre=form.cleaned_data["nombre"]
+            apellido=form.cleaned_data["apellido"]
+            club=form.cleaned_data["club"]
+            asistencias=form.cleaned_data["asistencias"]
+            #asistidor=ASIST(nombre=nombre, apellido=apellido, club=club, asistencias=asistencias)
+            form.save()
+            print(form)
             return render (request, "LigaFc/inicio.html")
 
     else:
@@ -90,12 +93,13 @@ def Rojas(request):
         if form.is_valid():
             informacion=form.cleaned_data
             print(informacion)
-            nombre=informacion["nombre"]
-            apellido=informacion["apellido"]
-            club=informacion["club"]
-            rojas=informacion["rojas"]
-            Roja=RED(nombre=nombre, apellido=apellido, club=club, rojas=rojas)
-            Roja.save()
+            nombre=form.cleaned_data["nombre"]
+            apellido=form.cleaned_data["apellido"]
+            club=form.cleaned_data["club"]
+            rojas=form.cleaned_data["rojas"]
+            #Roja=RED(nombre=nombre, apellido=apellido, club=club, rojas=rojas)
+            form.save()
+            print(form)
             return render (request, "LigaFc/inicio.html")
 
     else:
@@ -104,19 +108,19 @@ def Rojas(request):
 
 
 
-def Busquedaclub(request):
-    return render(request, "LigaFc/busquedaclub.html")
+def BusquedaGoleadores(request):
+    return render(request, "LigaFc/BusquedaGoleadores.html")
     
 
     
 def Buscar(request):
-    if request.GET["club"]:
+    if request.GET["Goleadores"]:
 
-        nombres=request.GET["club"]
-        #traeme de la base, TODOS los jugadores del club
-        clubes=club.objects.filter(club=club)
+        nombres=request.GET["goleadores"]
+        #traeme de la base, TODOS los goleadores
+        Goleadores=GLS.objects.all(Goleadores=Goleadores)
         return render(request, "LigaFc/resultadosBusqueda.html", {"club":"club"})
     else:
-        return render(request, "LigaFc/busquedaclub.html", {"mensaje":"Por favor ingresa un club!"})
+        return render(request, "LigaFc/BusquedaGoleadores.html", {"mensaje":"Por favor ingresa un Goleador"})
     
     return HttpResponse(respuesta)

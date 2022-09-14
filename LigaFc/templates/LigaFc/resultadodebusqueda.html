@@ -7,19 +7,19 @@
 {% endblock %}
 
 {% block contenido_que_cambia %}
-<h1>BUSQUEDA DE CLUB</h1>
-{% if cursos %}
+<h1>BUSQUEDA DE GOLEADORES</h1>
+{% if Goleadores %}
 
 <ul>
-    {% for curso in cursos %}
-        <li>{{nombre.club}}</li>
+    {% for Goleadores in Goleadores %}
+        <li>{{nombre.Goleadores}}</li>
         <li>{{}}</li>
         <br>
     {% endfor %}
 </ul>
 
 {% else %}
-<p>NO SE ENCONTRARON CURSOS</p>
+<p>NO SE ENCONTRO EL GOLEADOR</p>
 
 {% endif %}
 
